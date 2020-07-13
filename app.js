@@ -11,6 +11,7 @@ const globalErrorHandler = require('./controllers/errorController');
 
 const tourRouter = require('./Routes/tourRoutes');
 const userRouter = require('./Routes/userRoutes');
+const reviewRouter = require('./Routes/reviewRoutes');
 
 //initialize express
 const app = express();
@@ -33,7 +34,7 @@ const limiter = rateLimit({
 
 app.use('/api', limiter);
 
-//Reading data from the body into req.body
+//Reading data from the body into req.body. The limit option manages how large the data can be
 app.use(express.json({ limit: '10kb' }));
 
 //Data sanitization against NoSQL injection
@@ -70,6 +71,7 @@ app.use((req, res, next) => {
 //Mounted Routers
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/reviews', reviewRouter);
 
 //To catch all unhandled routes (It has to be the last middleware or at least just after the predefined routers)
 app.all('*', (req, res, next) => {
