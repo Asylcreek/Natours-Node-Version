@@ -122,6 +122,10 @@ tourSchema.virtual('reviews', {
     localField: '_id',
 });
 
+//Indexing
+tourSchema.index({ price: 1, ratingsAverage: -1 });
+tourSchema.index({ slug: 1 });
+
 //Document Middleware
 tourSchema.pre('save', function(next) {
     this.slug = slugify(this.name, { lower: true });
@@ -136,12 +140,14 @@ tourSchema.pre(/^find/, function(next) {
     next();
 });
 
-// tourSchema.pre(/^find/, function(next) {
-//     this.populate({
-//         path: 'guides',
-//         select: '-__v -passwordChangedAt',
-//     });
-// });
+tourSchema.pre(/^find/, function(next) {
+    this.populate({
+        path: 'guides',
+        select: '-__v -passwordChangedAt',
+    });
+
+    next();
+});
 // tourSchema.post(/^find/, function(docs, next) {
 //     next();
 // });

@@ -16,24 +16,17 @@ router.patch(
     authController.updatePassword
 );
 
-router.patch(
-    '/update-my-data',
-    authController.protect,
-    userController.updateMe
-);
+//Protect all routes after this middleware
+router.use(authController.protect);
 
-router.delete(
-    '/delete-my-data',
-    authController.protect,
-    userController.deleteMe
-);
+router.patch('/update-my-data', userController.updateMe);
 
-router.get(
-    '/me',
-    authController.protect,
-    userController.getMe,
-    userController.getUser
-);
+router.delete('/delete-my-data', userController.deleteMe);
+
+router.get('/me', userController.getMe, userController.getUser);
+
+//Restrict the routes after this to only admins
+router.use(authController.restrictTo('admin'));
 
 // User route
 router
