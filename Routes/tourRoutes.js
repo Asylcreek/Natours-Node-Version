@@ -27,6 +27,14 @@ router
         tourController.getMonthlyPlan
     );
 
+//Route for geospatial queries
+router
+    .route('/tours-within/:distance/center/:latlng/unit/:unit')
+    .get(tourController.getToursWithin);
+
+//Route for geospatial aggregation
+router.route('/distances/:latlng/unit/:unit').get(tourController.getDistances);
+
 //Tour routes
 router
     .route('/')
