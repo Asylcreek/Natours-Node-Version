@@ -2,19 +2,20 @@ doctype html
 html
     head
         //Meta Tags
-        meta(charset='UTF-8')
-        meta(name='viewport' content='width=device-width,initial-scale=1.0')
+        block head
+            meta(charset='UTF-8')
+            meta(name='viewport' content='width=device-width,initial-scale=1.0')
 
-        //Google Font
-        link(href='https://fonts.googleapis.com/css?family=Lato:300,300i,700' rel='stylesheet')
+            //Google Font
+            link(href='https://fonts.googleapis.com/css?family=Lato:300,300i,700' rel='stylesheet')
 
-        link(rel='stylesheet' href='css/style.css')
-        link(rel='shortcut icon' type='image/png' href='img/favicon.png')
+            link(rel='stylesheet' href='/css/style.css')
+            link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
 
-        title Natours | #{title ? title :'Exciting Tours for Adventurous People'}
+            title Natours | #{title ? title :'Exciting Tours for Adventurous People'}
 
     body
-        // Header
+        //Header
         include _header
 
         //Content
@@ -22,5 +23,7 @@ html
 
         //Footer
         include _footer
+
+        script(src="/js/mapbox.js")
 
 
