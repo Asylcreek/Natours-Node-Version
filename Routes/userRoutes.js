@@ -20,7 +20,11 @@ router.patch(
 //Protect all routes after this middleware
 router.use(authController.protect);
 
-router.patch('/update-my-data', userController.updateMe);
+router.patch(
+    '/update-my-data',
+    userController.uploadUserPhoto,
+    userController.updateMe
+);
 
 router.delete('/delete-my-data', userController.deleteMe);
 
