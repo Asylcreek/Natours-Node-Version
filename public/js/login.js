@@ -1,7 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
 import showAlert from './alerts';
-
 export const login = async(email, password) => {
     try {
         const res = await axios({
@@ -33,7 +32,14 @@ export const logout = async() => {
             url: 'http://127.0.0.1:3000/api/v1/users/logout',
         });
 
-        if (res.data.status === 'success') location.reload(true);
+        if (res.data.status === 'success') {
+            if (location.pathname === '/me')
+                return window.setTimeout(() => {
+                    location.assign('/');
+                }, 1500);
+
+            location.reload(true);
+        }
     } catch (err) {
         showAlert('error', 'Error logging out. Please try again');
     }
