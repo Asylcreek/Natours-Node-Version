@@ -23,6 +23,7 @@ router.use(authController.protect);
 router.patch(
     '/update-my-data',
     userController.uploadUserPhoto,
+    userController.resizeUserPhoto,
     userController.updateMe
 );
 

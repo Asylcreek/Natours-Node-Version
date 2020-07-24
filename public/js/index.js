@@ -37,10 +37,12 @@ if (logOutBtn) {
 if (userDataForm) {
     userDataForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        const newName = document.getElementById('name').value;
-        const newEmail = document.getElementById('email').value;
+        const form = new FormData();
+        form.append('name', document.getElementById('name').value);
+        form.append('email', document.getElementById('email').value);
+        form.append('photo', document.getElementById('photo').files[0]);
 
-        updateSettings({ name: newName, email: newEmail }, 'data');
+        updateSettings(form, 'data');
     });
 
     userPasswordForm.addEventListener('submit', async(event) => {
