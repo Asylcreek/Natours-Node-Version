@@ -7,6 +7,7 @@ const catchAsync = require('../Utils/catchAsync');
 const factory = require('./handlerFactory');
 const AppError = require('../Utils/appError');
 
+//For uploading images
 const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
